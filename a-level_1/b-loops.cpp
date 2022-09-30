@@ -57,7 +57,7 @@ int main()
     cout << counts << endl;
 
     cout << "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" << endl;
-    // * 2- fibonacci in different way
+    // * 3- fibonacci in different way
     cout << "fibonacci in different way: " << endl;
 
     int limit = 10;
@@ -66,4 +66,40 @@ int main()
         cout << a << " ";
 
     cout << endl;
+
+    cout << "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" << endl;
+    // * 4- print X in console
+    cout << "print X in console: " << endl;
+
+    int x = 3;
+    for (int i = 0; i < x; i++)
+    {
+        for (int j = 0; j < x; j++)
+        {
+            //! notice both come true in line that print single *
+            // if (j == i && j == x - i - 1)
+            //     cout << "-";
+
+            if (j == i || j == x - i - 1)
+                cout << "*";
+            else
+                cout << " ";
+        }
+        cout << endl;
+    }
+
+    cout << "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" << endl;
+    // * 5- a+b = c+d
+    cout << "a+b = c+d: " << endl;
+    counts = 0;
+    for (int a = 1; a <= 200; a++)
+        for (int b = 1; b <= 200; b++)
+            for (int c = 1; c <= 200; c++)
+            {
+                int d = a + b - c;
+                counts += (1 <= d && d <= 200);
+            }
+
+    cout << counts << endl;
+    
 }
