@@ -4,6 +4,7 @@
         "*.HTML": "html",
         "iostream": "cpp",
         "tuple": "cpp",
-        "cmath": "cpp"
+        "cmath": "cpp",
+        "ostream": "cpp"
     }
 }
