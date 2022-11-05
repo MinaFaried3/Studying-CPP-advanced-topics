@@ -136,6 +136,41 @@ bool isSubString(string str, string subStr, int start, int pos = 0)
 
     return isSubString(str, subStr, start + 1, pos + 1);
 }
+
+//-------------------------------------------------------
+//? 7 * is prime
+
+bool isPrime(int num, int test = 2)
+{
+    if (num % test == 0 || num == 1)
+        return false;
+
+    if (test > num / 2) // base condition
+        return true;
+
+    return isPrime(num, test + 1);
+}
+//? 8 * count primes
+
+int countPrimes1(int start, int end)
+{
+    if (start > end)
+        return 0;
+
+    // return isPrime(start) + countPrimes1(start + 1, end);
+    return isPrime(start) + isPrime(end) + countPrimes1(start + 1, end - 1); // more efficient
+}
+int countPrimes2(int start, int end)
+{
+    if (start > end)
+        return 0;
+
+    int result = countPrimes2(start + 1, end - 1);
+
+    result += isPrime(start) + isPrime(end);
+
+    return result;
+}
 int main()
 {
 
@@ -178,4 +213,11 @@ int main()
     cout << " 6 * is sub string" << endl;
 
     cout << isSubString("abcdeee", "bcd", 1) << endl;
+    //-------------------------------------------------------!SECTION
+
+    cout << " 7 * is prime" << endl;
+
+    cout << isPrime(5) << endl;
+    cout << countPrimes1(10, 20) << endl;
+    cout << countPrimes2(10, 20) << endl;
 }
