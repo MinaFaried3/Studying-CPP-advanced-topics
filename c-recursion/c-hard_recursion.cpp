@@ -83,4 +83,18 @@ int main()
     cout << "effFibonacci(41) : " << effFibonacci(41) << endl;
     cout << "effFibonacci(38) : " << effFibonacci(38) << endl;
     cout << "effFibonacci(50) : " << effFibonacci(50) << endl;
+    int x;
+    cout << x;
+
+    int a = 3, b = 2, c = 1;
+    if (a > b > c)
+        cout << "yes0";
+    if (a > b == c)
+        cout << "yes1";
+    if (a > (b > c))
+        cout << "yes2";
+    if ((a > b) > c)
+        cout << "yes3";
+    if ((a > b) && (b > c))
+        cout << "yes4";
 }
