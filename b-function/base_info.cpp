@@ -22,6 +22,7 @@ void toLower(const string &str)
     // for (char &x : str) //syntax error
     static int x;
     cout << "static x = " << x << endl;
+    x++;
     for (int i = 0; i < str.size(); i++)
     {
         // str[i] = tolower(str[i]); //syntax error,can't override
@@ -69,6 +70,8 @@ int main()
     // 2 * using const to make sure not changing the passed arguments by reference
     string name = "MINO";
     toLower(name);
+    toLower(name);
+    toLower(name); // notice the result of x static member
     cout << name << endl;
 
     cout << "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" << endl;
