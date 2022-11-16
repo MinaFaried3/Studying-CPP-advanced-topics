@@ -172,4 +172,15 @@ int main()
         cout << *cItr << " ";
     }
     cout << endl;
+
+    cout << "/-------------------------------------------------------" << endl;
+    cout << "* 7 - range based for loop " << endl;
+    int arr[]{1, 2, 3, 4, 5, 6, 7};
+    for (auto val : arr)
+        cout << val << " ";
+    cout << endl;
+
+    for (const auto &val : itrQue)
+        cout << val << " ";
+    cout << endl;
 }
