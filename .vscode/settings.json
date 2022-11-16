@@ -5,6 +5,9 @@
         "iostream": "cpp",
         "tuple": "cpp",
         "cmath": "cpp",
-        "ostream": "cpp"
+        "ostream": "cpp",
+        "xstring": "cpp",
+        "deque": "cpp",
+        "vector": "cpp"
     }
 }

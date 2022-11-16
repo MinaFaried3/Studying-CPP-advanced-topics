@@ -128,8 +128,8 @@ bool Or(Args... args)
 
 // -----------------------------------------------------
 // * 9 comma operator
-template <typename T>
-void pushBackVec(vector<T> &v, auto... args)
+template <typename T,typename ... Args>
+void pushBackVec(vector<T> &v, Args... args)
 {
     (v.push_back(args), ...);
 
