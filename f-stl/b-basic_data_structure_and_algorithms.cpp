@@ -114,6 +114,11 @@ int main()
     cout << "the firs of cfm , 5: " << str.find_first_of("cfm", 5) << endl;                    // print the most first index of (c,b,m) after 5 index
     cout << "the not firs of abc : " << str.find_first_not_of("abc") << endl;                  // print the most first index not start with (a,b,c) after 5 index
 
+    cout << "not founded by  string::npos :" << endl;
+    if (str.find('x') == string::npos)
+        cout << "not find 'x'" << endl;
+    if (str.find('a') != string::npos)
+        cout << "find 'a'" << endl;
     // replace
     /*
      the first argument is index that from it we will start replacement
