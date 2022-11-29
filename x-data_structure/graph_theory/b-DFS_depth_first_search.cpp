@@ -53,7 +53,7 @@ void DepthFirstSearch(int node)
     }
 
     topologySort.push_back(node); // DAG // Other way InDegree / OutDegree
-    //InDegree / OutDegree is not always work when there is a cyclic graph
+    // InDegree / OutDegree is not always work when there is a cyclic graph
 }
 
 //------------------------------------------------------------------------
@@ -75,6 +75,81 @@ int ConnectedComponentsCount()
     return count;
 }
 
+//------------------------------------------------------------------!SECTION
+// * 4 - Edge Classification
+vector<int> start, finish;
+bool anyCycle = false;
+int timer = 0;
+
+void EdgeClassification(int node)
+{
+    start[node] = timer++;
+
+    loopSz(i, adjacency[node])
+    {
+        int child = adjacency[node][i];
+
+        if (start[child] == -1) // tree edge
+            EdgeClassification(child);
+        else
+        {
+            if (finish[child] == -1) // back edge
+                anyCycle = 1;
+            else if (start[node] < start[child]) // forward edge
+                ;
+            else // cross edge
+                ;
+        }
+    }
+
+    finish[node] = timer++;
+}
+
+// * 5
+
+// Flood Fill...given maze where cells are . or X. You start at 0, 0..how many cells you could reach?
+/*
+..X.
+.X.X
+..X.
+
+...x.
+..x..
+.x...
+x....
+
+
+....X...
+....XXXX
+..X.....
+.X....XX
+..X.X.X.
+..X...X.
+...X..XX
+*/
+
+// A reachable block is called connected components. Each set of positions reachable together are connected component.
+
+int cnt = 0;
+const int MAX = 100;
+bool valid(int i, int j) { return 1; }
+char maze[MAX][MAX];
+bool vis[MAX][MAX];
+void cntReachableCells(int r, int c)
+{
+    if (!valid(r, c) || maze[r][c] == 'X' || vis[r][c] == 1)
+        return; // invalid position or block position
+
+    vis[r][c] = 1; // we just visited it, don't allow any one back to it
+    cnt++;
+
+    // Try the 4 neighbor cells
+    cntReachableCells(r, c - 1);
+    cntReachableCells(r, c + 1);
+    cntReachableCells(r - 1, c);
+    cntReachableCells(r + 1, c);
+}
+
 int main()
 {
     LABEL(1, "DepthFirstSearch");
@@ -91,4 +166,14 @@ int main()
     }
 
     BREAK; //------------------------------------------------------------------------
+    LABEL(4, "Edge Classification");
+    start = vector<int>(nodes, -1);
+    finish = vector<int>(nodes, -1);
+
+    loop0(nodes)
+    {
+        EdgeClassification(i);
+    }
+
+    cout << anyCycle;
 }
