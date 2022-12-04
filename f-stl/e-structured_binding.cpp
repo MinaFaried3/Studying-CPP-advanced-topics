@@ -81,8 +81,8 @@ int main()
     auto [name1, salary1] = returnByVal(); // waste in time
     cout << "auto  global by val => " << name1 << " " << salary1 << endl;
 
-    auto &[name2, salary2] = returnByVal(); //! Compile error
-    cout << "auto& global by val => " << name2 << " " << salary2 << endl;
+    // auto &[name2, salary2] = returnByVal(); //! Compile error
+    // cout << "auto& global by val => " << name2 << " " << salary2 << endl;
 
     auto &[name3, salary3] = returnByRef(); // return the reference
     cout << "auto& global by Ref => " << name3 << " " << salary3 << endl;
