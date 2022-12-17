@@ -101,7 +101,7 @@ int main()
 
     BREAK; //--------------------------------------------------
     LABEL(4, "its null pointer");
-    
+
     int *ptr = &val;
     if (ptr)
         cout << "ptr : " << *ptr << endl;
@@ -116,4 +116,14 @@ int main()
              << "null = 0" << endl;
 
     // ptr = 1; //compiler error
+
+    BREAK; //-----------------------------------------------------
+    LABEL(5, "null char at the end of string");
+    const string chars{"mina is coding"};
+    // cout << *(chars.end()) == '\0';
+    // char *chr = &chars;
+    // while (*chr != '\0')
+    // {
+    //     cout << *chr++;
+    // }
 }
