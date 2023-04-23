@@ -42,21 +42,21 @@ int numIDX = 0;
     cin.tie(NULL);                    \
     cout.tie(NULL);
 
-class MyPair
+class MyPairMC
 {
 private:
     int first, second;
 
 public:
-    MyPair(int first, int second) : first(first), second(second)
+    MyPairMC(int first, int second) : first(first), second(second)
     {
     }
 
-    MyPair Add(const MyPair &c2)
+    MyPairMC Add(const MyPairMC &c2)
     {
-        MyPair &c1 = *this;
-        return MyPair(c1.GetFirst() + c2.GetFirst(),
-                      c1.GetSecond() + c2.GetSecond());
+        MyPairMC &c1 = *this;
+        return MyPairMC(c1.GetFirst() + c2.GetFirst(),
+                        c1.GetSecond() + c2.GetSecond());
     }
 
     void print()
@@ -81,59 +81,59 @@ public:
     }
 
     // //? 1- can overload  int class with one parameter functions
-    MyPair operator+(const MyPair &c2)
+    MyPairMC operator+(const MyPairMC &c2)
     {
-        MyPair &c1 = *this;
-        return MyPair(c1.GetFirst() + c2.GetFirst(),
-                      c1.GetSecond() + c2.GetSecond());
+        MyPairMC &c1 = *this;
+        return MyPairMC(c1.GetFirst() + c2.GetFirst(),
+                        c1.GetSecond() + c2.GetSecond());
     }
 };
 
 //? 2- can overload  out class with two parameter functions
-MyPair operator+(const MyPair &c1, const MyPair &c2)
+MyPairMC operator+(const MyPairMC &c1, const MyPairMC &c2)
 {
-    return MyPair(c1.GetFirst() + c2.GetFirst(),
-                  c1.GetSecond() + c2.GetSecond());
+    return MyPairMC(c1.GetFirst() + c2.GetFirst(),
+                    c1.GetSecond() + c2.GetSecond());
 }
 
-MyPair operator+(const MyPair &c1, int x)
+MyPairMC operator+(const MyPairMC &c1, int x)
 {
-    return MyPair(c1.GetFirst() + x,
-                  c1.GetSecond() + x);
+    return MyPairMC(c1.GetFirst() + x,
+                    c1.GetSecond() + x);
 }
-MyPair operator*(int x, const MyPair &c1)
+MyPairMC operator*(int x, const MyPairMC &c1)
 {
-    return MyPair(c1.GetFirst() * x,
-                  c1.GetSecond() * x);
+    return MyPairMC(c1.GetFirst() * x,
+                    c1.GetSecond() * x);
 }
-MyPair operator-(const MyPair &c1, pair<int, int> p)
+MyPairMC operator-(const MyPairMC &c1, pair<int, int> p)
 {
-    return MyPair(c1.GetFirst() - p.first,
-                  c1.GetSecond() - p.second);
+    return MyPairMC(c1.GetFirst() - p.first,
+                    c1.GetSecond() - p.second);
 }
 
 int main()
 {
     LABEL("basic syntax");
-    MyPair XX(1, 2);
-    MyPair YY(10, 20);
+    MyPairMC XX(1, 2);
+    MyPairMC YY(10, 20);
 
     // MyPair z = XX.Add(y);
-    MyPair z = XX + YY;
+    MyPairMC z = XX + YY;
     z.print(); // (11,22)
     BREAK;     //------------------------------------------------------
 
     LABEL("test more operators");
     pair<int, int> p = make_pair(1, 3);
-    MyPair x(1, 2);
-    MyPair z1 = x + 5; //! CE: 5+x
-    MyPair z2 = 3 * x; //! CE: x * 3
-    MyPair z3 = x - p; //! CE: p - x
-    z1.print();        // (6,7)
-    z2.print();        // (3,6)
-    z3.print();        // (0,-1)
+    MyPairMC x(1, 2);
+    MyPairMC z1 = x + 5; //! CE: 5+x
+    MyPairMC z2 = 3 * x; //! CE: x * 3
+    MyPairMC z3 = x - p; //! CE: p - x
+    z1.print();          // (6,7)
+    z2.print();          // (3,6)
+    z3.print();          // (0,-1)
 
-    MyPair z4 = 3 * x + 5 + x;
+    MyPairMC z4 = 3 * x + 5 + x;
     BREAK; //------------------------------------------------------
 
     return 0;

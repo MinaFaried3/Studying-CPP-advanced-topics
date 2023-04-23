@@ -42,7 +42,7 @@ int numIDX = 0;
 	cin.tie(NULL);                    \
 	cout.tie(NULL);
 
-class MyPair
+class MyPairMC
 {
 private:
 	int first, second;
@@ -69,39 +69,37 @@ public:
 		this->second = second;
 	}
 
-	MyPair(int x) : MyPair(x, x)
+	MyPairMC(int x) : MyPairMC(x, x)
 	{
 		cout << "MyPair(int x)" << endl;
 	}
 
-	MyPair(int first, int second) : first(first), second(second)
+	MyPairMC(int first, int second) : first(first), second(second)
 	{
 		// cout << "MyPair(int first, int second)" << endl;
 	}
-
-
 };
 
-MyPair operator+(const MyPair &c1, const MyPair &c2)
+MyPairMC operator+(const MyPairMC &c1, const MyPairMC &c2)
 {
 	cout << "operator+" << endl;
-	return MyPair(c1.GetFirst() + c2.GetFirst(),
-				  c1.GetSecond() + c2.GetSecond());
+	return MyPairMC(c1.GetFirst() + c2.GetFirst(),
+					c1.GetSecond() + c2.GetSecond());
 }
 
 int main()
 {
 	LABEL(" Converting constructor MyPair(int x)");
-	MyPair w = 5; // Converting constructor MyPair(int x)
+	MyPairMC w = 5; // Converting constructor MyPair(int x)
 	w.print();
 	BREAK; //------------------------------------------------------
 
-	MyPair x(1, 2);
-	MyPair z1 = x + 5.3;
+	MyPairMC x(1, 2);
+	MyPairMC z1 = x + 5.3;
 	z1.print();
-	MyPair z2 = 3 + x;
+	MyPairMC z2 = 3 + x;
 	z2.print();
-	MyPair z3 = 3 + x + 5;
+	MyPairMC z3 = 3 + x + 5;
 	z3.print();
 
 	return 0;

@@ -2,18 +2,18 @@
 #include <vector>
 using namespace std;
 
-class MyPair
+class MyPairMC
 {
 private:
     int first, second;
 
 public:
-    MyPair() : // Empty constructor to allow using default
-               first(-1), second(-1)
+    MyPairMC() : // Empty constructor to allow using default
+                 first(-1), second(-1)
     {
     }
 
-    MyPair(int first, int second) : first(first), second(second)
+    MyPairMC(int first, int second) : first(first), second(second)
     {
     }
 
@@ -80,7 +80,7 @@ public:
 };
 
 //! must be out side of class
-void operator>>(istream &input, MyPair &pair)
+void operator>>(istream &input, MyPairMC &pair)
 {
     int a, b;
     cin >> a >> b;
@@ -103,7 +103,7 @@ ostream &operator<<(ostream &output, const MyPair2 &pair)
 
 int main()
 {
-    MyPair x, y;
+    MyPairMC x, y;
     cin >> x;
     x.print();
 

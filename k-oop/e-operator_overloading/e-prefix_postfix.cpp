@@ -2,13 +2,13 @@
 #include <vector>
 using namespace std;
 
-class MyPair
+class MyPairMC
 {
 private:
     int first, second;
 
 public:
-    MyPair(int first, int second) : first(first), second(second)
+    MyPairMC(int first, int second) : first(first), second(second)
     {
     }
 
@@ -34,7 +34,7 @@ public:
     }
 
     // ++x prefix increment operator
-    MyPair &operator++()
+    MyPairMC &operator++()
     {
         ++first, ++second; // increment first
         return *this;      // then return reference
@@ -42,20 +42,20 @@ public:
 
     // x++ postfix increment operator
     // DON'T return MyPair&: this is local var
-    MyPair operator++(int)
+    MyPairMC operator++(int)
     {
-        MyPair cpy = *this; // Copy first
-        ++first, ++second;  // Then increment
+        MyPairMC cpy = *this; // Copy first
+        ++first, ++second;    // Then increment
         return cpy;
     }
 };
 
 int main()
 {
-    MyPair x1(1, 2);
+    MyPairMC x1(1, 2);
     (++x1).print(); // (2,3)
 
-    MyPair x2(1, 2);
+    MyPairMC x2(1, 2);
     x2++.print(); // (1,2)
     x2.print();   // (2,3)
 

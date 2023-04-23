@@ -4,6 +4,7 @@
 #include <list>
 #include <iomanip>
 #include <cmath>
+#include <climits>
 #include <string>
 #include <vector>
 #include <queue>
@@ -25,6 +26,7 @@ using namespace std;
 #define lol long long int
 #define endl '\n'
 #define sz(v) ((int)((v).size()))
+#define all(v) ((v).begin()), ((v).end())
 #define loop0(n) for (int i = 0; i < n; i++)
 #define loop1(n) for (int i = 1; i <= n; i++)
 #define loop(i, n) for (int i = 0; i < (int)(n); ++i)
@@ -41,59 +43,39 @@ int numIDX = 0;
     ios_base::sync_with_stdio(false); \
     cin.tie(NULL);                    \
     cout.tie(NULL);
-
-class MyPairMC
+lol gcd(lol a, lol b)
 {
-private:
-    int first, second;
-
-public:
-    MyPairMC(int first, int second) : first(first), second(second)
-    {
-    }
-
-    MyPairMC Add(const MyPairMC &c2)
-    {
-        MyPairMC &c1 = *this;
-        return MyPairMC(c1.GetFirst() + c2.GetFirst(),
-                        c1.GetSecond() + c2.GetSecond());
-    }
-
-    void print()
-    {
-        cout << "(" << first << "," << second << ")\n";
-    }
-    int GetFirst() const
-    {
-        return first;
-    }
-    void SetFirst(int first)
-    {
-        this->first = first;
-    }
-    int GetSecond() const
-    {
-        return second;
-    }
-    void SetSecond(int second)
-    {
-        this->second = second;
-    }
-
-    MyPairMC operator!()
-    {
-        cout << "Here\n";
-        MyPairMC &c1 = *this;
-        return MyPairMC(-1 * c1.GetFirst(),
-                        -1 * c1.GetSecond());
-    }
-};
+    return b == 0 ? a : gcd(b, a % b);
+}
+lol lcm(lol a, lol b) { return a / gcd(a, b) * b; }
 
 int main()
 {
-    MyPairMC x(1, 2);
-    x = !x;
-    x.print(); // (-1,-2)
+    // Array names are non-modifiable lvalues
+    int arr[]{1, 2, 3, 4};
+    // arr = &x;		CE non-modifiable
+    int *p = arr; // points to lvalue
+    // p + 1 = arr;	// CE: p + 1 is an prvalue
+    *(p + 1) = 10; // *(p + 1) is an lvalue
 
-    return 0;
+    // * operator converts prvalue to lvalue
+    // & operator converts lvalue to prvalue
+
+    int a = 10;
+    p = &a; // a is lvalue and &a is prvalue
+            // p = &(a+1);       // CE: a+1 is prvalue
+    //&a = 40;          // &a is not lvalue
+
+    // int *p2 = 10;	CE 10 is prvalue
+    //  the only literal exception is c string literals, as they are arrays
+    const char *char_ptr = "mostafa";
+
+    // string &ref2 = "mostafa";
+    //  CE: cannot bind non-const lvalue reference to an prvalue
+    //  ref2 is non-const lvalue reference
+    //  "mostafa" is prvalue
+
+    // We can assign lvalue/prvalue to a const lvalue reference
+    const string &ref2 = "mostafa";
+    const char &chr = 'd';
 }

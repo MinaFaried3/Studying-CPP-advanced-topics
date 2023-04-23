@@ -2,20 +2,20 @@
 #include <vector>
 using namespace std;
 
-class MyPair
+class MyPairMC
 {
 private:
     int first, second;
 
 public:
-    MyPair(int first, int second) : first(first), second(second)
+    MyPairMC(int first, int second) : first(first), second(second)
     {
     }
 
-    MyPair Add(const MyPair &c2)
+    MyPairMC Add(const MyPairMC &c2)
     {
-        MyPair &c1 = *this;
-        return MyPair(c1.GetFirst() + c2.GetFirst(), c1.GetSecond() + c2.GetSecond());
+        MyPairMC &c1 = *this;
+        return MyPairMC(c1.GetFirst() + c2.GetFirst(), c1.GetSecond() + c2.GetSecond());
     }
 
     void print()
@@ -56,7 +56,7 @@ public:
 
 int main()
 {
-    MyPair x(10, 20);
+    MyPairMC x(10, 20);
     cout << x[0] << " " << x[1] << "\n";
 
     // error: lvalue required as left operand of assignment

@@ -2,7 +2,7 @@
 #include <vector>
 using namespace std;
 
-class MyPair
+class MyPairMC
 {
 private:
 	int first, second;
@@ -29,16 +29,16 @@ public:
 		this->second = second;
 	}
 
-	MyPair(int x) : MyPair(x, x)
+	MyPairMC(int x) : MyPairMC(x, x)
 	{
 	}
 
-	MyPair(int first, int second) : first(first), second(second)
+	MyPairMC(int first, int second) : first(first), second(second)
 	{
 	}
 
-	MyPair(pair<int, int> p) : // Use explicit
-							   first(p.first), second(p.second)
+	MyPairMC(pair<int, int> p) : // Use explicit
+								 first(p.first), second(p.second)
 	{
 	}
 
@@ -59,7 +59,7 @@ public:
 
 int main()
 {
-	MyPair x(2, 3);
+	MyPairMC x(2, 3);
 
 	int r = x; // 6
 	double d = x;

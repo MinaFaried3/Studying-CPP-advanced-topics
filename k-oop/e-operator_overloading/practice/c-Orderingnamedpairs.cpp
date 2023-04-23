@@ -20,14 +20,14 @@ from the previous class
 variable
 */
 
-class MyPair
+class MyPairMC
 {
 private:
     int first, second;
 
 public:
-    virtual ~MyPair() {}
-    MyPair(int first, int second) : first(first), second(second)
+    virtual ~MyPairMC() {}
+    MyPairMC(int first, int second) : first(first), second(second)
     {
     }
 
@@ -52,9 +52,9 @@ public:
         this->second = second;
     }
 
-    bool operator<(const MyPair &c2)
+    bool operator<(const MyPairMC &c2)
     {
-        MyPair &c1 = *this;
+        MyPairMC &c1 = *this;
 
         if (c1.first == c2.first)
             return c1.second < c2.second;
@@ -63,13 +63,13 @@ public:
     }
 };
 
-class NamedPair : public MyPair
+class NamedPair : public MyPairMC
 {
 private:
     string name;
 
 public:
-    NamedPair(string name, int first, int second) : MyPair(first, second), name(name)
+    NamedPair(string name, int first, int second) : MyPairMC(first, second), name(name)
     {
     }
 
@@ -78,7 +78,7 @@ public:
         NamedPair &c1 = *this;
 
         if (c1.name == c2.name)
-            return MyPair::operator<(c2);
+            return MyPairMC::operator<(c2);
 
         return c1.name < c2.name;
     }

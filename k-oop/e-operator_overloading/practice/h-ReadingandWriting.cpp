@@ -49,18 +49,18 @@ lol gcd(lol a, lol b)
 }
 lol lcm(lol a, lol b) { return a / gcd(a, b) * b; }
 
-class MyPair
+class MyPairMC
 {
 private:
 	int first, second;
 
 public:
-	MyPair() : // Empty constructor to allow using default
-			   first(-1), second(-1)
+	MyPairMC() : // Empty constructor to allow using default
+				 first(-1), second(-1)
 	{
 	}
 
-	MyPair(int first, int second) : first(first), second(second)
+	MyPairMC(int first, int second) : first(first), second(second)
 	{
 	}
 
@@ -149,7 +149,7 @@ Fraction operator*(Fraction lhs, const Fraction &rhs)
 
 int main()
 {
-	MyPair x, y;
+	MyPairMC x, y;
 
 	// Very weird to the used style!
 	x >> cin;

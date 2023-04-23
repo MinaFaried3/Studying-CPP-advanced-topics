@@ -4,6 +4,7 @@
 #include <list>
 #include <iomanip>
 #include <cmath>
+#include <climits>
 #include <string>
 #include <vector>
 #include <queue>
@@ -25,6 +26,7 @@ using namespace std;
 #define lol long long int
 #define endl '\n'
 #define sz(v) ((int)((v).size()))
+#define all(v) ((v).begin()), ((v).end())
 #define loop0(n) for (int i = 0; i < n; i++)
 #define loop1(n) for (int i = 1; i <= n; i++)
 #define loop(i, n) for (int i = 0; i < (int)(n); ++i)
@@ -41,59 +43,66 @@ int numIDX = 0;
     ios_base::sync_with_stdio(false); \
     cin.tie(NULL);                    \
     cout.tie(NULL);
-
-class MyPairMC
+lol gcd(lol a, lol b)
 {
-private:
-    int first, second;
+    return b == 0 ? a : gcd(b, a % b);
+}
+lol lcm(lol a, lol b) { return a / gcd(a, b) * b; }
 
-public:
-    MyPairMC(int first, int second) : first(first), second(second)
-    {
-    }
+void f2(int &a) { cout << "f2() \n"; }
+void f2(int &&a) { cout << "f2&&() \n"; }
 
-    MyPairMC Add(const MyPairMC &c2)
-    {
-        MyPairMC &c1 = *this;
-        return MyPairMC(c1.GetFirst() + c2.GetFirst(),
-                        c1.GetSecond() + c2.GetSecond());
-    }
+void f1(int &a)
+{
+    cout << "f1() \n";
+    f2(a);
+}
+void f1(int &&a)
+{
+    cout << "f1&&() \n";
+    f2(static_cast<int &&>(a));
+}
 
-    void print()
-    {
-        cout << "(" << first << "," << second << ")\n";
-    }
-    int GetFirst() const
-    {
-        return first;
-    }
-    void SetFirst(int first)
-    {
-        this->first = first;
-    }
-    int GetSecond() const
-    {
-        return second;
-    }
-    void SetSecond(int second)
-    {
-        this->second = second;
-    }
+int &&OurMove(int &x)
+{
+    return static_cast<int &&>(x);
+}
+void foo2(int &a) { cout << "foo2() \n"; }
+void foo2(int &&a) { cout << "foo2&&() \n"; }
 
-    MyPairMC operator!()
-    {
-        cout << "Here\n";
-        MyPairMC &c1 = *this;
-        return MyPairMC(-1 * c1.GetFirst(),
-                        -1 * c1.GetSecond());
-    }
-};
-
+void foo1(int &a)
+{
+    cout << "foo1() \n";
+    foo2(a);
+}
+void foo1(int &&a)
+{
+    cout << "foo1&&() \n";
+    // Return of OurMove is interesting
+    // It originally has identity (a)
+    // It is now Rvalue Reference (can be moved)
+    // This is called xvalue
+    // Has identity and movable
+    foo2(OurMove(a));
+}
 int main()
 {
-    MyPairMC x(1, 2);
-    x = !x;
-    x.print(); // (-1,-2)
+    {
+        int x = 10;
+        // By casting x to int&&, we force it be Rvalue reference
+        // That we convert an Lvalue to Rvalue Reference!
+        int &&xr = static_cast<int &&>(x);
+
+        f1(10); // f1&&()    f2&&()
+
+        // xr is a name
+        // name ==> lvalue
+        // Don't fotget :)
+        f1(xr); // f1() f2()
+    }
+    {
+        	foo1(10); // foo1&&()    foo2&&()
+    }
 
     return 0;
 }
