@@ -53,6 +53,8 @@ void get_combination(int i = 0, int last_val = 0)
 {
     if (i == k)
     {
+        loop0(sz(combinations)) cout << combinations[i] << " ";
+        cout << endl;
         ++cnt;
         return;
     }
